@@ -1,14 +1,9 @@
 const sizeButtons = document.querySelectorAll('.size-button');
-console.log(sizeButtons);
-const radios = document.querySelectorAll('[name="color"]');
-const radio = document.querySelectorAll('.color-checkbox');
-console.log(radios);
-console.log(radio);
+const colorCheckbox = document.querySelectorAll('.color-checkbox');
 
-const options = document.querySelectorAll('.select-option');
-const op = document.querySelectorAll('[name="option"]');
-console.log(options);
-console.log(op);
+
+const selectOptions = document.querySelectorAll('.select-option');
+
 
 const domain = location.href;
 let url = new URL(`${domain}/filter?size=M&color=1&color=2&manufacturer=aaa&manufacturer=ddd`);
@@ -20,16 +15,36 @@ console.log(search);
 
 let size = search.get('size');
 console.log(size);
-sizeButtons.forEach((el) => {
-    if(el.value === size){
-        el.checked=true;
-    }
-})
-
 
 let colors = search.getAll('color');
 console.log(colors);
 
 let manufacturers = search.getAll('manufacturer');
 console.log(manufacturers);
+
+window.addEventListener("load",  () => {
+    sizeButtons.forEach((el) => {
+        if(el.value === size){
+            el.checked=true;
+        }
+    });
+
+    colorCheckbox.forEach((el) => {
+        if(colors.includes(el.value)){
+            el.checked=true;
+        }
+    });
+
+    selectOptions.forEach((el) => {
+        if(manufacturers.includes(el.value)){
+            el.selected=true;
+        }
+    });
+
+    
+  });
+
+
+
+
 
