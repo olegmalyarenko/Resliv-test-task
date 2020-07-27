@@ -1,7 +1,7 @@
 const sizeButtons = document.querySelectorAll('.size-button');
 const colorCheckbox = document.querySelectorAll('.color-checkbox');
 const selectOptions = document.querySelectorAll('.select-option');
-const saleCheckbox = document.getElementById('sale');
+//const saleCheckbox = document.getElementById('sale');
 
 
 const domain = location.href;
@@ -44,7 +44,7 @@ window.addEventListener("load",  () => {
      let colorArr = [];
      let selectArr = [];
      let sizeVal = [];
-     let saleVal = [];
+     //let saleVal = [];
      
     sizeButtons.forEach((el) => {
         if(el.checked){
@@ -64,12 +64,11 @@ window.addEventListener("load",  () => {
         }
     });
 
-    if(saleCheckbox.checked) {
+    /*if(saleCheckbox.checked) {
         saleVal.push(`&sale=${saleCheckbox.value}`);
-    }
+    }*/
 
-    console.log(selectArr);
-    let newUrl = `${baseUrl}${sizeVal}${colorArr}${selectArr}${saleVal}`;
+    let newUrl = new URL(`${baseUrl}${sizeVal}${colorArr}${selectArr}`);
 
     console.log('Cсылка обновилась:',newUrl);
 
