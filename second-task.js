@@ -10,7 +10,7 @@ let url = new URL(`${domain}/filter?size=M&color=1&color=2&manufacturer=aaa&manu
 console.log('fff',url);
 
 
-const search = new URLSearchParams(url.search);
+let search = new URLSearchParams(url.search);
 console.log(search);
 
 let size = search.get('size');
@@ -44,6 +44,18 @@ window.addEventListener("load",  () => {
     
   });
 
+ sizeButtons.forEach((el) => {
+    el.addEventListener('click', (event) => {
+        el.checked=true;
+        search.set(size, event.target.value);
+        console.log( 'Cсылка обновилась', url);
+        url = new URL(`${domain}/filter?size=${event.target.value}&color=1&color=2&manufacturer=aaa&manufacturer=ddd`);
+        console.log(url);
+
+    })
+});
+ 
+ 
 
 
 
