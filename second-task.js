@@ -75,3 +75,16 @@ window.addEventListener("load",  () => {
     };
    
     document.getElementById('form').addEventListener('change', updateUrl);
+
+    
+    //HASH URL Version
+    /*window.onhashchange = () => {console.log('hash changed', window.location.hash)};
+    const hash = window.location.hash;
+
+    const hashUrl = new URL(`${domain}${hash}`);
+    console.log('Хэш ссылка:', hashUrl);
+    
+    
+    const searchH = new URLSearchParams(url.hashUrl);
+    const sizeH = searchH.get('size');
+    console.log(sizeH);*/
