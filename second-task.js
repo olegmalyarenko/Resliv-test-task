@@ -1,26 +1,18 @@
 const sizeButtons = document.querySelectorAll('.size-button');
 const colorCheckbox = document.querySelectorAll('.color-checkbox');
-
-
 const selectOptions = document.querySelectorAll('.select-option');
 
 
 const domain = location.href;
 let url = new URL(`${domain}/filter?size=M&color=1&color=2&manufacturer=aaa&manufacturer=ddd`);
-console.log('fff',url);
+console.log('Первоначальная ссылка:',url);
 
 
 let search = new URLSearchParams(url.search);
-console.log(search);
-
 let size = search.get('size');
-console.log(size);
-
 let colors = search.getAll('color');
-console.log(colors);
-
 let manufacturers = search.getAll('manufacturer');
-console.log(manufacturers);
+
 
 window.addEventListener("load",  () => {
     sizeButtons.forEach((el) => {
@@ -44,19 +36,40 @@ window.addEventListener("load",  () => {
     
   });
 
- sizeButtons.forEach((el) => {
-    el.addEventListener('click', (event) => {
-        el.checked=true;
-        search.set(size, event.target.value);
-        console.log( 'Cсылка обновилась', url);
-        url = new URL(`${domain}/filter?size=${event.target.value}&color=1&color=2&manufacturer=aaa&manufacturer=ddd`);
-        console.log(url);
-
-    })
-});
- 
- 
 
 
+ const updateUrl = () => {
+     let baseUrl = new URL(`${domain}/filter?`);
+     let colorArr = [];
+     let selectArr = [];
+     let sizeVal = [];
+     
+     sizeButtons.forEach((el) => {
+        if(el.checked){
+            sizeVal.push(`size=${el.value}`)
+        }
+    });
+    console.log(sizeVal);
 
+    colorCheckbox.forEach((el) => {
+        if(el.checked){
+            colorArr.push(`&color=${el.value}`)
+        }
+    });
+    
+    console.log(colorArr);
 
+    selectOptions.forEach((el) => {
+        if(el.selected){
+            selectArr.push(`&manufacturer=${el.value}`)
+        }
+    });
+
+    console.log(selectArr);
+    let newUrl = `${baseUrl}${sizeVal}${colorArr}${selectArr}`;
+
+    console.log('Cсылка обновилась:',newUrl);
+
+    };
+   
+    document.getElementById('form').addEventListener('change', updateUrl);
