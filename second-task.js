@@ -1,17 +1,18 @@
 const sizeButtons = document.querySelectorAll('.size-button');
 const colorCheckbox = document.querySelectorAll('.color-checkbox');
 const selectOptions = document.querySelectorAll('.select-option');
+const saleCheckbox = document.getElementById('sale');
 
 
 const domain = location.href;
-let url = new URL(`${domain}/filter?size=M&color=1&color=2&manufacturer=aaa&manufacturer=ddd`);
-console.log('Первоначальная ссылка:',url);
+const url = new URL(`${domain}/filter?size=M&color=1&color=2&manufacturer=aaa&manufacturer=ddd`);
+console.log('Первоначальная ссылка:', url);
 
 
-let search = new URLSearchParams(url.search);
-let size = search.get('size');
-let colors = search.getAll('color');
-let manufacturers = search.getAll('manufacturer');
+const search = new URLSearchParams(url.search);
+const size = search.get('size');
+const colors = search.getAll('color');
+const manufacturers = search.getAll('manufacturer');
 
 
 window.addEventListener("load",  () => {
@@ -43,30 +44,32 @@ window.addEventListener("load",  () => {
      let colorArr = [];
      let selectArr = [];
      let sizeVal = [];
+     let saleVal = [];
      
-     sizeButtons.forEach((el) => {
+    sizeButtons.forEach((el) => {
         if(el.checked){
-            sizeVal.push(`size=${el.value}`)
+            sizeVal.push(`size=${el.value}`);
         }
     });
-    console.log(sizeVal);
-
+        
     colorCheckbox.forEach((el) => {
         if(el.checked){
-            colorArr.push(`&color=${el.value}`)
+            colorArr.push(`&color=${el.value}`);
         }
     });
     
-    console.log(colorArr);
-
     selectOptions.forEach((el) => {
         if(el.selected){
-            selectArr.push(`&manufacturer=${el.value}`)
+            selectArr.push(`&manufacturer=${el.value}`);
         }
     });
 
+    if(saleCheckbox.checked) {
+        saleVal.push(`&sale=${saleCheckbox.value}`);
+    }
+
     console.log(selectArr);
-    let newUrl = `${baseUrl}${sizeVal}${colorArr}${selectArr}`;
+    let newUrl = `${baseUrl}${sizeVal}${colorArr}${selectArr}${saleVal}`;
 
     console.log('Cсылка обновилась:',newUrl);
 
