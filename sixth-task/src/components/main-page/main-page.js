@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-
-
-export default class MainPage extends Component() {
+export default class MainPage extends Component {
   render() {
       return (
-    <h1>Главная страничка!</h1>
+    <div className="main-content">   
+      <h1>Главная страничка!</h1>
+    </div>   
   );
   }
 }
