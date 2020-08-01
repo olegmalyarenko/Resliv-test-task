@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/olegmalyarenko/Resliv-test-task/issues"
   },
-  "homepage": "https://github.com/olegmalyarenko/Resliv-test-task#readme"
+  "homepage": "https://github.com/olegmalyarenko/Resliv-test-task#readme",
+  "dependencies": {}
 }

@@ -3,7 +3,7 @@ import MainPage from './components/main-page';
 import EmployeesPage from './components/employees';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navigation from './components/navigation';
-const MyContext = React.createContext(null);
+import { Context } from './context.js';
 export default class App extends Component {
   state = {
     itemList: [],
@@ -18,7 +18,9 @@ componentDidMount(){
     this.setState({
       itemList: data.data
     })
-  }).then(console.log(this.state.itemList))
+    console.log(this.state.itemList);
+  })
+  
 }
 
 
@@ -30,14 +32,14 @@ componentDidMount(){
        <Router>
            <Navigation/>
            <Switch>
-           <MyContext.Provider
+           <Context.Provider
               value={{
                 state: this.state,
                 
               }}>
              <Route path='/' component={MainPage} exact />
              <Route path='/employees' component={EmployeesPage} />
-             </MyContext.Provider>
+             </Context.Provider>
            </Switch> 
 
            
