@@ -12,18 +12,10 @@ export default class App extends Component {
 };
 componentDidMount(){
   if (this.state.itemList.length === 0) {
-  fetch(`https://reqres.in/api/users?per_page=12`)
-  .then(res=> res.json())
-  .then( data => {
-    this.setState({
-      itemList: data.data
-    })
-    console.log(this.state.itemList);
-  })
-  
-}
-
-
+    fetch(`https://reqres.in/api/users?per_page=12`)
+    .then(res=> res.json())
+    .then( data => this.setState({itemList: data.data}));
+  }
 }
   render() {
       return (
