@@ -11,13 +11,14 @@ const EmployeesPage = () => {
 
         <div>   
           <h3>Работники</h3>
-          <ul className='item-list list-group'>
-          {context.state.itemList.map(user => <Person user={user}/>)}
-        </ul>
           <AddButton
           value={context.state.label}
           change={context.onLabelChange}
           submit={context.onSubmit}/>
+          <ul className='item-list list-group'>
+          {context.state.itemList.map(user => <Person user={user} onDelete={context.onDelete}/>)}
+        </ul>
+         
         </div>
       
   )
