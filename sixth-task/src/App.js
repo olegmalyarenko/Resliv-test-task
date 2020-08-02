@@ -7,7 +7,7 @@ import { Context } from './context.js';
 export default class App extends Component {
   state = {
     itemList: [],
-    status: true,
+    label: ''
 
 };
 componentDidMount(){
@@ -16,6 +16,31 @@ componentDidMount(){
     .then(res=> res.json())
     .then( data => this.setState({itemList: data.data}));
   }
+}
+
+onLabelChange= (e) => {
+  this.setState({
+      label: e.target.value
+  });
+  console.log(this.state.label);
+
+}
+
+onSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.label) {
+    this.setState(state => ({
+      itemList: [...state.itemList, {
+        first_name: state.label.trim(),
+        id: new Date().getMilliseconds(),
+      }],
+      label: ''
+    }))
+  }
+ 
+
+   
+
 }
   render() {
       return (
@@ -27,18 +52,18 @@ componentDidMount(){
            <Context.Provider
               value={{
                 state: this.state,
+                onLabelChange: this.onLabelChange,
+                onSubmit: this.onSubmit,
                 
               }}>
              <Route path='/' component={MainPage} exact />
              <Route path='/employees' component={EmployeesPage} />
              </Context.Provider>
            </Switch> 
-
-           
+                 
 
         </Router>
-          
-      
+               
     </div>
   );
   }
