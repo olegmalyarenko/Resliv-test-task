@@ -1,22 +1,20 @@
-import React, { useContext } from 'react';
-import { Context } from '../../context.js';
-const Person = (user, { onDelete }) => {
-  
-  
-     console.log(user.user);
+import React from 'react';
+const Person = ({user, onDelete }) => {
+         
+
       return (
         <li className='list-group-item todo-list-item-label'
-        key = {user.user.id}
         >
-           {user.user.first_name}
-         
-           <span  type="button"
-                  className="btn btn-outline-danger btn-sm float-right"
-                  onClick={() => onDelete(user.user.id)}>
-            <i className="fa fa-trash-o" />
-        </span>
-        </li> 
-      );
-  
-}
+             {user.first_name}
+                         
+                <button className="btn btn-outline-danger btn-sm float-right"
+                onClick={() => onDelete(user.id)}>
+                  <i className="fa fa-trash-o"/>
+                </button>
+             
+            
+        </li>
+      )
+    };
+
 export default Person;

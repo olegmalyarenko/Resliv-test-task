@@ -5,8 +5,7 @@ import AddButton from '../add-button';
 
 const EmployeesPage = () => {
   const context = useContext(Context);
-      
-        
+          
       return (
 
         <div>   
@@ -15,8 +14,13 @@ const EmployeesPage = () => {
           value={context.state.label}
           change={context.onLabelChange}
           submit={context.onSubmit}/>
+
           <ul className='item-list list-group'>
-          {context.state.itemList.map(user => <Person user={user} onDelete={context.onDelete}/>)}
+          
+          {context.state.itemList.map(user => (
+          <Person key={user.id} user={user} onDelete={context.onDelete} />
+        ))}
+          
         </ul>
          
         </div>

@@ -1,9 +1,7 @@
 import React  from 'react'; 
 
 const AddButton = ({submit, change, value}) => {
-    
-   
-        
+      
         return (
             <form 
             onSubmit={submit}>
@@ -11,7 +9,6 @@ const AddButton = ({submit, change, value}) => {
                    onChange={change}
                    placeholder="Новое имя"
                    value={value}
-                   onChange={change}
                    />     
 
             <button

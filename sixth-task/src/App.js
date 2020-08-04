@@ -18,12 +18,25 @@ componentDidMount(){
   }
 }
 
+onDelete = (id) => {
+  this.setState(({ itemList }) => {
+    const index = itemList.findIndex((el) => el.id === id );
+    
+    
+    const newArr = [ ...itemList.slice(0, index), 
+       ...itemList.slice(index + 1)]
+    return {
+      itemList: newArr
+    }
+    
+  })
+}
+
 onLabelChange= (e) => {
   this.setState({
       label: e.target.value
   });
-  console.log(this.state.label);
-
+  
 }
 
 onSubmit = (e) => {
@@ -40,18 +53,8 @@ onSubmit = (e) => {
     
 
 }
-onDelete = (id) => {
-  this.setState(({ itemList }) => {
-  const index = itemList.findIndex((el) => el.id === id );
-  
-  const newArr = [ ...itemList.slice(0, index), 
-     ...itemList.slice(index + 1)]
-  return {
-    itemList: newArr
-  }
 
-})
-}
+
   render() {
       return (
     <div className="App">
@@ -62,9 +65,10 @@ onDelete = (id) => {
            <Context.Provider
               value={{
                 state: this.state,
+                onDelete: this.onDelete,
                 onLabelChange: this.onLabelChange,
                 onSubmit: this.onSubmit,
-                onDelete: this.onDelete,
+                
                 
               }}>
              <Route path='/' component={MainPage} exact />
